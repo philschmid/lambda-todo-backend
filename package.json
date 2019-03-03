@@ -1,0 +1,43 @@
+{
+  "name": "lambda-todo-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "s"
+  },
+  "author": "Philipp Schmid",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/debug": "0.0.31",
+    "@types/jest": "^24.0.0",
+    "@types/jsonwebtoken": "^8.3.0",
+    "@types/node": "^10.12.11",
+    "@types/uuid": "^3.4.4",
+    "jest": "^24.1.0",
+    "node.extend": "^2.0.2",
+    "serverless-offline": "^3.32.1",
+    "serverless-plugin-tracing": "^2.0.0",
+    "serverless-plugin-typescript": "^1.1.5",
+    "ts-jest": "^24.0.0",
+    "ts-node": "^7.0.1",
+    "ts-node-dev": "^1.0.0-pre.32",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "@aws/dynamodb-data-mapper": "^0.7.3",
+    "@aws/dynamodb-data-mapper-annotations": "^0.7.3",
+    "apollo-server": "^2.3.1",
+    "apollo-server-lambda": "^2.3.1",
+    "aws-sdk": "^2.384.0",
+    "dotenv": "^6.2.0",
+    "graphql": "^14.0.2",
+    "jsonwebtoken": "^8.5.0",
+    "serverless-dynamodb-local": "^0.2.30",
+    "uuid": "^3.3.2"
+  }
+}
