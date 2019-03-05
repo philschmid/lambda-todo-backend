@@ -3,7 +3,7 @@
 import {ApolloServer, defaultPlaygroundOptions} from 'apollo-server-lambda'
 import {schema} from './schema/schema'
 import {resolvers} from './resolvers'
-// import {jwtAuth} from './service/jwtAuth'
+import {verify} from './service/JWT'
 import {AuthenticationError} from 'apollo-server'
 
 const server = new ApolloServer({
@@ -11,19 +11,17 @@ const server = new ApolloServer({
   resolvers,
   playground: defaultPlaygroundOptions,
   context: ({event: {headers}}) => {
-    return headers
-    // if (authentication) {
-    //   return jwtAuth
-    //     .verify(authentication)
-    //     .then(res => {
-    //       console.log(res)
-    //     })
-    //     .catch(err => {
-    //       throw err
-    //     })
-    // } else {
-    //   throw new AuthenticationError('Wrong Token')
-    // }
+    if (headers.Authorization) {
+      return verify(headers.Authorization)
+        .then(res => {
+          console.log(res)
+        })
+        .catch(err => {
+          throw err
+        })
+    } else {
+      throw new AuthenticationError('Wrong Token')
+    }
   },
 })
 
