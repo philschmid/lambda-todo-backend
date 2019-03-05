@@ -5,7 +5,7 @@ import DynamoDB = require('aws-sdk/clients/dynamodb')
 
 export const mapper = new DataMapper({
   client:
-    process.env.IS_OFFLINE !== 'true'
+    process.env.NODE_ENV === 'prod'
       ? new DynamoDB({region: 'eu-central-1'})
       : new DynamoDB({
           region: 'localhost',

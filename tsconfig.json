@@ -7,7 +7,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2016",
-    "lib": ["es6", "es7", "esnext"],
+    "lib": ["es6", "es7", "esnext", "dom"],
     "outDir": ".build",
     "moduleResolution": "node",
     "rootDir": "./src",
@@ -24,7 +24,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
-    "skipLibCheck": true,
+    "skipLibCheck": true
   },
   "exclude": ["node_modules", "test"]
 }

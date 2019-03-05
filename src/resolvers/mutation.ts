@@ -1,11 +1,9 @@
 /** @format */
 
-import {jwtAuth} from '../service/jwtAuth'
+import {verify} from '../service/JWT'
 
 export const _Mutation = {
-  createToken: () => {
-    return jwtAuth.createAuthToken({userid: 'max', role: ['user', 'admin']}).then(res => {
-      return res
-    })
+  createTask: () => {
+    return 'Hello'
   },
 }

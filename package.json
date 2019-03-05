@@ -3,12 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
+  "config": {
+    "file": "./src/utils/database/mutation/test/mutation.test.ts"
+  },
   "scripts": {
-    "test": "jest"
+    "test": "NODE_ENV=dev jest --coverage --color",
+    "test-prod": "NODE_ENV=prod jest --coverage --color",
+    "test-prod-file": "NODE_ENV=prod jest $npm_package_config_file --coverage --color",
+    "start": "NODE_ENV=dev ts-node index.ts",
+    "start-prod": "NODE_ENV=prod ts-node index.ts",
+    "build-ts": "tsc"
   },
   "repository": {
     "type": "git",
-    "url": "s"
+    "url": "https://github.com/philschmid/lambda-todo-backend"
   },
   "author": "Philipp Schmid",
   "license": "ISC",
@@ -33,11 +41,13 @@
     "@aws/dynamodb-data-mapper-annotations": "^0.7.3",
     "apollo-server": "^2.3.1",
     "apollo-server-lambda": "^2.3.1",
-    "aws-sdk": "^2.384.0",
+    "aws-sdk": "^2.414.0",
     "dotenv": "^6.2.0",
     "graphql": "^14.0.2",
     "jsonwebtoken": "^8.5.0",
-    "serverless-dynamodb-local": "^0.2.30",
+    "jwk-to-pem": "^2.0.1",
+    "node-fetch": "^2.3.0",
+    "serverless-dynamodb-local": "0.2.30",
     "uuid": "^3.3.2"
   }
 }
