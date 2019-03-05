@@ -3,11 +3,14 @@ import {gql} from 'apollo-server-express'
 export const schema = gql`
   type Query {
     hello(name: String): String
-    getTaskByEditor(editor: String): Task
-    getTaskByProject(editor: String, project: String): Task
+    getTaskByEditor(workspace: String!, taskId: String!): Task
+    getTasksByEditor(workspace: String!, editor: String!): [Task]
+    getTasksByProject(editor: String!, project: String!): [Task]
+    getTasksByWorkspace(workspace: String!): [Task]
   }
   type Mutation {
     createTask(
+      workspace: String!
       editor: String!
       creator: String
       title: String!
@@ -22,7 +25,8 @@ export const schema = gql`
       complexity: String
     ): Task
     editTask(
-      editor: String!
+      workspace: String!
+      editor: String
       taskId: String!
       creator: String
       title: String
@@ -36,9 +40,11 @@ export const schema = gql`
       doState: String
       complexity: String
     ): Task
-    deleteTask(editor: String!, taskId: String!): Boolean
+    deleteTask(workspace: String!, taskId: String!): Boolean
   }
   type Task {
+    workspace: String
+    taskId: String
     editor: String
     creator: String
     title: String
