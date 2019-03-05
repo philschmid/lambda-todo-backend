@@ -40,6 +40,10 @@ const testSuccessTask4: Task = {
   title: 'eine Test Task',
   taskId: 'maria-123-456',
 }
+const testfailTask: any = {
+  workspace: 'aaaa',
+  editor: 'cc',
+}
 
 it('create Task -> Prep', async () => {
   expect(await createTask(testSuccessTask1)).toMatchObject({title: testSuccessTask1.title})
@@ -48,21 +52,24 @@ it('create Task -> Prep', async () => {
   expect(await createTask(testSuccessTask4)).toMatchObject({title: testSuccessTask4.title})
 })
 it('test getTaskByEditor', async () => {
-  expect(await getTaskByEditor(testSuccessTask1)).toMatchObject({title: testSuccessTask1.title})
+  await expect(getTaskByEditor(testSuccessTask1)).resolves.toMatchObject({title: testSuccessTask1.title})
+  await expect(getTaskByEditor(testfailTask)).rejects.toThrow()
 })
 
 it('test getTasksByEditor', async () => {
-  expect(await getTasksByEditor(testSuccessTask1)).toBeDefined()
-  expect(await getTasksByEditor(testSuccessTask4)).toBeDefined()
+  await expect(getTasksByEditor(testSuccessTask1)).resolves.toBeDefined()
+  await expect(getTasksByEditor(testSuccessTask4)).resolves.toBeDefined()
+  await expect(getTasksByEditor(testfailTask)).rejects.toThrow()
 })
 
 it('test getTasksByProject', async () => {
-  expect(await getTasksByProject({project: 'Testproject'})).toBeDefined()
-//   expect(await getTasksByProject({project: 'xx'})).toThrowError()
+  await expect(getTasksByProject({project: 'Testproject'})).resolves.toBeDefined()
+  await expect(getTasksByProject({project: 'xxxx'})).rejects.toThrow()
 })
 
 it('test getTasksByWorkspace', async () => {
-    expect(await getTasksByWorkspace({workspace: 'testWorkspace'})).toBeDefined()
+  await expect(getTasksByWorkspace({workspace: 'testWorkspace'})).resolves.toBeDefined()
+  await expect(getTasksByWorkspace({workspace: 'xxxx'})).rejects.toThrow()
 })
 
 it('delete Task -> end', async () => {

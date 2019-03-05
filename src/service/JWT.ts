@@ -11,7 +11,7 @@ export const verify = async (token: string) => {
       return response.json()
     })
     const pem = await jwkToPem(JWK.keys[1])
-    return await jwt.verify(token, pem, {algorithms: ['RS256']}, function(err, decodedToken) {
+    await jwt.verify(token, pem, {algorithms: ['RS256']}, function(err, decodedToken) {
       if (err) {
         reject(err)
       } else {

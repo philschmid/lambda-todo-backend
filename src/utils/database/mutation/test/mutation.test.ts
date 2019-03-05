@@ -22,19 +22,24 @@ const testupdateProject: any = {
   project: 'neues Project',
   taskId: '123-456',
 }
+const testFailTask: any = {
+  ss: 'testWorkspace',
+}
 
-it('Test Task', async () => {
-  expect(await createTask(testSuccessTask)).toMatchObject({title: testSuccessTask.title})
+it('Test create Task', async () => {
+  await expect(createTask(testSuccessTask)).resolves.toMatchObject({title: testSuccessTask.title})
+  await expect(createTask(testFailTask)).rejects.toThrow()
 })
 
 it('edit Task', async () => {
-  expect(await editTask(testupdateTask)).toMatchObject({title: testupdateTask.title})
+  await expect(editTask(testupdateTask)).resolves.toMatchObject({title: testupdateTask.title})
 })
 it('edit Task Project', async () => {
-  expect(await editTask(testupdateProject)).toMatchObject({project: testupdateProject.project})
+  await expect(editTask(testupdateProject)).resolves.toMatchObject({project: testupdateProject.project})
+  await expect(editTask(testFailTask)).rejects.toThrow()
 })
 
 it('delete Task', async () => {
-  expect(await deleteTask(testupdateTask)).toMatchObject({title: testupdateTask.title})
-  // expect(await getTaskByEditor(testSuccessTask)).toThrow()
+  await expect(deleteTask(testSuccessTask)).resolves.toMatchObject({workspace: testSuccessTask.workspace})
+  await expect(deleteTask(testFailTask)).rejects.toThrow()
 })

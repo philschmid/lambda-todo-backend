@@ -10,7 +10,6 @@ export const getTasksByProject = async ({project, editor}: {editor?: string; pro
       res.push(task)
     }
     if (res.length > 0) {
-      console.log(res)
       resolve(res)
     } else if (res.length === 0) {
       reject(new Error(`Keine Task bei Project ${project} von User ${editor} gefunden`))
