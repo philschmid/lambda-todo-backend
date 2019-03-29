@@ -12,6 +12,7 @@ export const schema = gql`
     createTask(
       workspace: String!
       editor: String!
+      taskId:String!
       creator: String
       title: String!
       description: String
