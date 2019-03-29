@@ -20,9 +20,14 @@ const server = new ApolloServer({
           throw err
         })
     } else {
-      throw new AuthenticationError('Wrong Token')
+      throw new AuthenticationError(`Wrong Token ${headers.Authorization}`)
     }
   },
 })
 
-exports.graphqlHandler = server.createHandler()
+exports.graphqlHandler = server.createHandler({
+  cors: {
+    origin: true,
+    credentials: true,
+  },
+})

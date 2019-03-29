@@ -5,9 +5,8 @@ import {mapper} from '../../../service/datamapper'
 
 export const createTask = async (args: Task) => {
   return new Promise(async (resolve, reject) => {
-    if (args.editor && args.title) {
-      const date = new Date().toISOString()
-      const toSave = Object.assign(new Task(), {...{taskId: `${args.editor}-${args.title}-${date}`}, ...args})
+    if (args.editor && args.title && args.taskId) {
+      const toSave = Object.assign(new Task(), args)
       console.log(toSave)
       return await mapper
         .put(toSave)
@@ -18,7 +17,7 @@ export const createTask = async (args: Task) => {
           reject(err)
         })
     } else {
-      reject(new Error('keine editor und Title mitgesendet. erstellen des Tasks nicht möglich'))
+      reject(new Error('keine Editor und Title mitgesendet. Erstellen des Tasks nicht möglich'))
     }
   })
 }

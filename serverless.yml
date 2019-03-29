@@ -12,6 +12,7 @@ provider:
   # deploymentBucket: lambda-apollo-dynamodb-d-serverlessdeploymentbuck-t9pc8fb6q2vd
   environment:
     DYNAMODB_TABLE: taskTable
+    NODE_ENV: prod
   iamRoleStatements:
     - Effect: Allow
       Action:
