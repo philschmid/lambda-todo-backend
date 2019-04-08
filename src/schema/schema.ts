@@ -12,7 +12,7 @@ export const schema = gql`
     createTask(
       workspace: String!
       editor: String!
-      taskId:String!
+      taskId: String!
       creator: String
       title: String!
       description: String
@@ -24,6 +24,7 @@ export const schema = gql`
       category: String
       doState: String
       complexity: String
+      dueDate: String
     ): Task
     editTask(
       workspace: String!
@@ -40,6 +41,7 @@ export const schema = gql`
       category: String
       doState: String
       complexity: String
+      dueDate: String
     ): Task
     deleteTask(workspace: String!, taskId: String!): Boolean
   }
@@ -57,6 +59,7 @@ export const schema = gql`
     endTime: String
     category: String
     doState: String
+    dueDate: String
     complexity: String
   }
 `

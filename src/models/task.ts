@@ -47,6 +47,9 @@ export class Task {
   @attribute()
   endTime?: string
 
+  @attribute()
+  dueDate?: string
+
   @attribute({defaultProvider: () => 'Not categorized'})
   category?: string
 
